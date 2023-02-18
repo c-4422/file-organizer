@@ -1,0 +1,1 @@
+/usr/bin/g++ -DQT_QML_DEBUG -g "CMakeFiles/file-sorter.dir/file-sorter_autogen/mocs_compilation.cpp.o" "CMakeFiles/file-sorter.dir/main.cpp.o" "CMakeFiles/file-sorter.dir/mainwindow.cpp.o" -o file-sorter  /usr/lib64/libQt5Widgets.so.5.15.8 /usr/lib64/libQt5Gui.so.5.15.8 /usr/lib64/libQt5Core.so.5.15.8 

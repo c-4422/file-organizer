@@ -1,0 +1,70 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-a5bb524912c9a20fdd48.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "file-sorter",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "file-sorter::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-file-sorter-Debug-3ad953008d5636d0cc01.json",
+					"name" : "file-sorter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "file-sorter_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-file-sorter_autogen-Debug-30f4352e7747f564ce24.json",
+					"name" : "file-sorter_autogen",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/c-4422/Projects/file-sorter/build-file-sorter-Desktop-Debug",
+		"source" : "/home/c-4422/Projects/file-sorter/file-sorter"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
