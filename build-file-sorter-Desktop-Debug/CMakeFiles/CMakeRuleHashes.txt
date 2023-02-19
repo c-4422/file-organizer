@@ -1,3 +1,0 @@
-# Hashes of file build rules.
-f66b015e5f7df9a8f651bcc42b54da8e /home/c-4422/Projects/file-sorter/file-sorter/file-sorter_en_US.ts
-388e957d09152a2d8385fc29562d264f CMakeFiles/file-sorter_autogen

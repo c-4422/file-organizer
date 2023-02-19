@@ -25,41 +25,46 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="56"/>
-        <source>Excluded Directories</source>
+        <source>File Extensions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="66"/>
-        <source>Exclude Directory</source>
+        <location filename="mainwindow.ui" line="71"/>
+        <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="82"/>
-        <source>Sort by creation date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="89"/>
-        <source>Preserve original file path in file comments</source>
+        <location filename="mainwindow.ui" line="78"/>
+        <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="96"/>
+        <source>Sort by creation date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="103"/>
+        <source>Preserve original file path in file comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="110"/>
         <source>Preserve non-media file grouping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="123"/>
+        <location filename="mainwindow.ui" line="137"/>
         <source>Tab 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="139"/>
+        <location filename="mainwindow.ui" line="153"/>
         <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="113"/>
+        <location filename="mainwindow.ui" line="127"/>
         <source>Pictures Destination</source>
         <oldsource>Output Destination</oldsource>
         <translation type="unfinished"></translation>

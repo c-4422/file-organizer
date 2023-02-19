@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QString str("test");
+    ui->pictureFileExtList->
 }
 
 MainWindow::~MainWindow()
@@ -13,9 +15,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_outputDestination_pressed()
+void MainWindow::on_pictureDestination_pressed()
 {
-    mOutputDestination = QFileDialog::getExistingDirectory(this, "Open Output Destination");
-    ui->lineEdit->setText(mOutputDestination);
+    sFileOp.SetOutputDestinantion(QFileDialog::getExistingDirectory(this, "Open Picture Output Destination"));
+    ui->pictureDestinationField->setText(sFileOp.GetOutputDestinantion());
 }
 

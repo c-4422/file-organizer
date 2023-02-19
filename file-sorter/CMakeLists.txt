@@ -17,6 +17,8 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 set(TS_FILES file-sorter_en_US.ts)
 
 set(PROJECT_SOURCES
+        FileOperation.hpp
+        FileOperation.cpp
         main.cpp
         mainwindow.cpp
         mainwindow.hpp

@@ -3,6 +3,12 @@
 
 #include <QFileDialog>
 #include <QMainWindow>
+#include "FileOperation.hpp"
+
+// There should only ever be one file operation object.
+// This will make it easier to save configurations since
+// we can jsonify the object itself.
+static FileOperation sFileOp;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,10 +23,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_outputDestination_pressed();
+    void on_pictureDestination_pressed();
 
 private:
     Ui::MainWindow *ui;
-    QString mOutputDestination{};
 };
 #endif // MAINWINDOW_HPP

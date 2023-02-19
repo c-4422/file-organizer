@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>940</width>
-    <height>505</height>
+    <width>780</width>
+    <height>593</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -53,19 +53,36 @@
             <item>
              <widget class="QLabel" name="label_2">
               <property name="text">
-               <string>Excluded Directories</string>
+               <string>File Extensions</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QListView" name="listView"/>
+             <widget class="QListView" name="pictureFileExtList"/>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton">
-              <property name="text">
-               <string>Exclude Directory</string>
+             <widget class="QListWidget" name="listWidget"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <property name="topMargin">
+               <number>0</number>
               </property>
-             </widget>
+              <item>
+               <widget class="QPushButton" name="pushButton">
+                <property name="text">
+                 <string>Add</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_4">
+                <property name="text">
+                 <string>Remove</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
@@ -149,8 +166,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>940</width>
-     <height>30</height>
+     <width>780</width>
+     <height>29</height>
     </rect>
    </property>
   </widget>

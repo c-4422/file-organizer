@@ -1,8 +1,0 @@
-/home/c-4422/Projects/file-sorter/build-file-sorter-Desktop-Debug/CMakeFiles/file-sorter.dir
-/home/c-4422/Projects/file-sorter/build-file-sorter-Desktop-Debug/CMakeFiles/edit_cache.dir
-/home/c-4422/Projects/file-sorter/build-file-sorter-Desktop-Debug/CMakeFiles/rebuild_cache.dir
-/home/c-4422/Projects/file-sorter/build-file-sorter-Desktop-Debug/CMakeFiles/list_install_components.dir
-/home/c-4422/Projects/file-sorter/build-file-sorter-Desktop-Debug/CMakeFiles/install.dir
-/home/c-4422/Projects/file-sorter/build-file-sorter-Desktop-Debug/CMakeFiles/install/local.dir
-/home/c-4422/Projects/file-sorter/build-file-sorter-Desktop-Debug/CMakeFiles/install/strip.dir
-/home/c-4422/Projects/file-sorter/build-file-sorter-Desktop-Debug/CMakeFiles/file-sorter_autogen.dir
