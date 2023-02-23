@@ -9,3 +9,7 @@ FileOperation::FileOperation() :
                                             "indd", "indt", "idmi",
                                             "psd", "ai", "raw", "arw",
                                             "cr", "rw2", "nrw", "k25"})) {}
+
+const std::vector<QString>& FileOperation::GetPicturesFileExt() const {
+    return mPictures.mFileExtensions;
+}

@@ -1,5 +1,6 @@
 #include "mainwindow.hpp"
 #include "./ui_mainwindow.h"
+#include <QListWidget>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -7,7 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     QString str("test");
-    ui->pictureFileExtList->
+    for(auto extension : sFileOp.GetPicturesFileExt()) {
+        ui->picturExtList->addItem(extension);
+    }
 }
 
 MainWindow::~MainWindow()

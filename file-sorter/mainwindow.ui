@@ -58,10 +58,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QListView" name="pictureFileExtList"/>
-            </item>
-            <item>
-             <widget class="QListWidget" name="listWidget"/>
+             <widget class="QListWidget" name="picturExtList"/>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -167,7 +164,7 @@
      <x>0</x>
      <y>0</y>
      <width>780</width>
-     <height>29</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>

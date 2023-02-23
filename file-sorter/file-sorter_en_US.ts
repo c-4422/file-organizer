@@ -54,6 +54,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="mainwindow.ui" line="127"/>
+        <source>Pictures Destination</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="mainwindow.ui" line="137"/>
         <source>Tab 2</source>
         <translation type="unfinished"></translation>
@@ -61,12 +66,6 @@
     <message>
         <location filename="mainwindow.ui" line="153"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="127"/>
-        <source>Pictures Destination</source>
-        <oldsource>Output Destination</oldsource>
         <translation type="unfinished"></translation>
     </message>
 </context>

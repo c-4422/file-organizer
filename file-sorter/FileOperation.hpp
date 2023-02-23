@@ -8,6 +8,7 @@ class FileOperation {
 public:
   FileOperation();
 
+  const std::vector<QString>& GetPicturesFileExt() const;
   QString GetOutputDestinantion();
   void SetOutputDestinantion(QString aOutputDestination);
 
