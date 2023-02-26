@@ -25,6 +25,20 @@ public:
 private slots:
     void on_pictureDestination_pressed();
 
+    void on_addPictureFileExtButton_pressed();
+
+    void on_removePictureFileExt_pressed();
+
+    void on_isPictureAllFiles_toggled(bool checked);
+
+    void on_isPictureDateSorted_toggled(bool checked);
+
+    void UpdatePictureFileExtList();
+
+    void on_isPictureFileComments_toggled(bool checked);
+
+    void on_pictureInputButton_pressed();
+
 private:
     Ui::MainWindow *ui;
 };

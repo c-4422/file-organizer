@@ -29,42 +29,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="71"/>
+        <location filename="mainwindow.ui" line="66"/>
+        <source>All file types</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="81"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="78"/>
+        <location filename="mainwindow.ui" line="88"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="96"/>
+        <location filename="mainwindow.ui" line="106"/>
         <source>Sort by creation date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="103"/>
+        <location filename="mainwindow.ui" line="113"/>
         <source>Preserve original file path in file comments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="110"/>
-        <source>Preserve non-media file grouping</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="127"/>
+        <location filename="mainwindow.ui" line="130"/>
         <source>Pictures Destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="137"/>
+        <location filename="mainwindow.ui" line="140"/>
         <source>Tab 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="153"/>
+        <location filename="mainwindow.ui" line="156"/>
         <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>

@@ -37,10 +37,10 @@
              </widget>
             </item>
             <item>
-             <widget class="QListView" name="listView_2"/>
+             <widget class="QListWidget" name="pictureInputPaths"/>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="pictureInputButton">
               <property name="text">
                <string>Open Input Directory</string>
               </property>
@@ -61,19 +61,29 @@
              <widget class="QListWidget" name="picturExtList"/>
             </item>
             <item>
+             <widget class="QCheckBox" name="isPictureAllFiles">
+              <property name="text">
+               <string>All file types</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="pictureFileExtEdit"/>
+            </item>
+            <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <property name="topMargin">
                <number>0</number>
               </property>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="addPictureFileExtButton">
                 <property name="text">
                  <string>Add</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_4">
+               <widget class="QPushButton" name="removePictureFileExt">
                 <property name="text">
                  <string>Remove</string>
                 </property>
@@ -91,23 +101,16 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QCheckBox" name="isDateSorted">
+           <widget class="QCheckBox" name="isPictureDateSorted">
             <property name="text">
              <string>Sort by creation date</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="isFileComments">
+           <widget class="QCheckBox" name="isPictureFileComments">
             <property name="text">
              <string>Preserve original file path in file comments</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="isPreserveFiles">
-            <property name="text">
-             <string>Preserve non-media file grouping</string>
             </property>
            </widget>
           </item>
@@ -119,7 +122,11 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLineEdit" name="pictureDestinationField"/>
+           <widget class="QLineEdit" name="pictureDestinationField">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pictureDestination">
@@ -145,12 +152,36 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLineEdit" name="lineEdit"/>
+       <widget class="QLineEdit" name="unifiedOutputField">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="outputDestination">
         <property name="text">
-         <string>PushButton</string>
+         <string>Output Destination</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="clearUnifiedOutput">
+        <property name="text">
+         <string>Clear</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="process">
+        <property name="toolTipDuration">
+         <number>2</number>
+        </property>
+        <property name="whatsThis">
+         <string>Begin file copy and sort</string>
+        </property>
+        <property name="text">
+         <string>Process</string>
         </property>
        </widget>
       </item>
@@ -164,7 +195,7 @@
      <x>0</x>
      <y>0</y>
      <width>780</width>
-     <height>30</height>
+     <height>29</height>
     </rect>
    </property>
   </widget>

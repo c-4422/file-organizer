@@ -6,11 +6,23 @@
 
 class FileOperation {
 public:
+  enum Category {
+    Picture,
+    Video,
+    Document,
+    Other
+  };
+
   FileOperation();
 
   const std::vector<QString>& GetPicturesFileExt() const;
   QString GetOutputDestinantion();
   void SetOutputDestinantion(QString aOutputDestination);
+  void AddFileExt(Category aCategory, QString aString);
+  void RemoveFileExt(Category aCategory, int aIndex);
+  void SetAllFileTypes(Category aCategory, bool aIsAllTypes);
+  void SetDateSorted(Category aCategory, bool aIsDateSorted);
+  void SetFileComment(Category aCategory, bool aIsFileComment);
 
 private:
   struct FileSortSettings {
@@ -23,7 +35,7 @@ private:
     QString mOutputDestination{};
     bool mIsDateSort = false;
     bool mIsFileComment = false;
-    bool mIsMediaGrouping = false;
+    bool mIsAllFileTypes = false;
   };
   QString mOutputDestination{};
   FileSortSettings mPictures;
