@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     UpdatePictureFileExtList();
+    UpdatePictureInputList();
 }
 
 MainWindow::~MainWindow()
@@ -22,10 +23,18 @@ void MainWindow::UpdatePictureFileExtList() {
   }
 }
 
+void MainWindow::UpdatePictureInputList() {
+  ui->pictureInputPaths->clear();
+  for (auto path : sFileOp.GetPicturesFileInput()) {
+    ui->pictureInputPaths->addItem(path);
+  }
+}
+
 void MainWindow::on_pictureDestination_pressed()
 {
-    sFileOp.SetOutputDestinantion(QFileDialog::getExistingDirectory(this, "Open Picture Output Destination"));
-    ui->pictureDestinationField->setText(sFileOp.GetOutputDestinantion());
+    sFileOp.SetOutputDestinantion(FileOperation::Category::Picture,
+                                  QFileDialog::getExistingDirectory(this, "Open Picture Output Destination"));
+    ui->pictureDestinationField->setText(sFileOp.GetOutputDestinantion(FileOperation::Category::Picture));
 }
 
 
@@ -70,6 +79,25 @@ void MainWindow::on_isPictureFileComments_toggled(bool checked)
 
 void MainWindow::on_pictureInputButton_pressed()
 {
-  sFileOp.SetOutputDestinantion(QFileDialog::getExistingDirectory(this, "Open Picture Output Destination"));
+  sFileOp.AddFileInputPath(FileOperation::Category::Picture,
+                           QFileDialog::getExistingDirectory(this,
+                                                             "Open Picture Output Destination"));
+  UpdatePictureInputList();
 }
 
+
+void MainWindow::on_outputDestination_pressed()
+{
+    sFileOp.SetOutputDestinantion(QFileDialog::getExistingDirectory(this, "Open Output Destination"));
+    ui->unifiedOutputField->setText(sFileOp.GetOutputDestinantion());
+}
+
+
+void MainWindow::on_clearUnifiedOutput_pressed()
+{
+    sFileOp.SetOutputDestinantion(QString{});
+    ui->unifiedOutputField->setText(QString{});
+}
+
+// DEV-NOTE: When Processing is requested be sure to grab the text from the output fields and apply it to
+//           the sFileOp

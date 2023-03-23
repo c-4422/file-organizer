@@ -34,10 +34,15 @@ private slots:
     void on_isPictureDateSorted_toggled(bool checked);
 
     void UpdatePictureFileExtList();
+    void UpdatePictureInputList();
 
     void on_isPictureFileComments_toggled(bool checked);
 
     void on_pictureInputButton_pressed();
+
+    void on_outputDestination_pressed();
+
+    void on_clearUnifiedOutput_pressed();
 
 private:
     Ui::MainWindow *ui;

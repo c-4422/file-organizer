@@ -54,18 +54,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="130"/>
+        <location filename="mainwindow.ui" line="134"/>
         <source>Pictures Destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="140"/>
+        <location filename="mainwindow.ui" line="144"/>
         <source>Tab 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="156"/>
-        <source>PushButton</source>
+        <location filename="mainwindow.ui" line="164"/>
+        <source>Output Destination</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="171"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="181"/>
+        <source>Begin file copy and sort</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="184"/>
+        <source>Process</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

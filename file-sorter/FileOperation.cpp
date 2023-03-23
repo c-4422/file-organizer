@@ -14,6 +14,20 @@ const std::vector<QString>& FileOperation::GetPicturesFileExt() const {
     return mPictures.mFileExtensions;
 }
 
+const std::vector<QString>& FileOperation::GetPicturesFileInput() const {
+    return mPictures.mFileInput;
+}
+
+QString FileOperation::GetOutputDestinantion(Category aCategory) const {
+  switch (aCategory) {
+    case Category::Picture:
+      return mPictures.mOutputDestination;
+
+    default:
+      return QString{};
+  }
+}
+
 void FileOperation::AddFileExt(Category aCategory, QString aString) {
   if (aCategory == Category::Picture) {
     auto it = mPictures.mFileExtensions.begin();
@@ -21,6 +35,17 @@ void FileOperation::AddFileExt(Category aCategory, QString aString) {
   }
 }
 
+void FileOperation::AddFileInputPath(Category aCategory, QString aString) {
+  switch (aCategory) {
+    case Category::Picture: {
+      auto it = mPictures.mFileInput.begin();
+      mPictures.mFileInput.insert(it, aString);
+      break;
+    }
+    default:
+      break;
+  }
+}
 
 void FileOperation::RemoveFileExt(Category aCategory, int aIndex) {
   if (aIndex < mPictures.mFileExtensions.size()) {
@@ -57,3 +82,15 @@ void FileOperation::SetFileComment(Category aCategory, bool aIsFileComment) {
       break;
   }
 }
+
+void FileOperation::SetOutputDestinantion(Category aCategory, QString aOutputDestination) {
+  switch (aCategory) {
+    case Category::Picture:
+      mPictures.mOutputDestination = aOutputDestination;
+      break;
+
+    default:
+      break;
+  }
+}
+
