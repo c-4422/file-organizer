@@ -43,6 +43,10 @@ private:
   };
   QString mOutputDestination{};
   FileSortSettings mPictures;
+  FileSortSettings mVideos;
+  FileSortSettings mMusic;
+  FileSortSettings mDocuments;
+  FileSortSettings mOther;
 };
 
 inline QString FileOperation::GetOutputDestinantion() const { return mOutputDestination; }
