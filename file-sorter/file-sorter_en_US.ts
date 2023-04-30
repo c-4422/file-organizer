@@ -14,123 +14,156 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="35"/>
-        <location filename="mainwindow.ui" line="154"/>
-        <location filename="mainwindow.ui" line="273"/>
-        <location filename="mainwindow.ui" line="392"/>
-        <location filename="mainwindow.ui" line="511"/>
+        <location filename="mainwindow.ui" line="60"/>
+        <location filename="mainwindow.ui" line="286"/>
+        <location filename="mainwindow.ui" line="405"/>
+        <location filename="mainwindow.ui" line="524"/>
+        <location filename="mainwindow.ui" line="643"/>
         <source>Input Directories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="45"/>
-        <location filename="mainwindow.ui" line="164"/>
-        <location filename="mainwindow.ui" line="283"/>
-        <location filename="mainwindow.ui" line="402"/>
+        <location filename="mainwindow.ui" line="296"/>
+        <location filename="mainwindow.ui" line="415"/>
+        <location filename="mainwindow.ui" line="534"/>
         <source>Open Input Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="56"/>
-        <location filename="mainwindow.ui" line="175"/>
-        <location filename="mainwindow.ui" line="294"/>
-        <location filename="mainwindow.ui" line="413"/>
+        <location filename="mainwindow.ui" line="95"/>
+        <location filename="mainwindow.ui" line="307"/>
+        <location filename="mainwindow.ui" line="426"/>
+        <location filename="mainwindow.ui" line="545"/>
         <source>File Extensions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="66"/>
-        <location filename="mainwindow.ui" line="185"/>
-        <location filename="mainwindow.ui" line="304"/>
-        <location filename="mainwindow.ui" line="423"/>
+        <location filename="mainwindow.ui" line="105"/>
+        <location filename="mainwindow.ui" line="317"/>
+        <location filename="mainwindow.ui" line="436"/>
+        <location filename="mainwindow.ui" line="555"/>
         <source>All file types</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="81"/>
-        <location filename="mainwindow.ui" line="200"/>
-        <location filename="mainwindow.ui" line="319"/>
-        <location filename="mainwindow.ui" line="438"/>
+        <location filename="mainwindow.ui" line="120"/>
+        <location filename="mainwindow.ui" line="332"/>
+        <location filename="mainwindow.ui" line="451"/>
+        <location filename="mainwindow.ui" line="570"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="88"/>
-        <location filename="mainwindow.ui" line="207"/>
-        <location filename="mainwindow.ui" line="326"/>
-        <location filename="mainwindow.ui" line="445"/>
+        <location filename="mainwindow.ui" line="127"/>
+        <location filename="mainwindow.ui" line="339"/>
+        <location filename="mainwindow.ui" line="458"/>
+        <location filename="mainwindow.ui" line="577"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="106"/>
-        <location filename="mainwindow.ui" line="225"/>
-        <location filename="mainwindow.ui" line="344"/>
-        <location filename="mainwindow.ui" line="463"/>
+        <location filename="mainwindow.ui" line="149"/>
+        <location filename="mainwindow.ui" line="357"/>
+        <location filename="mainwindow.ui" line="476"/>
+        <location filename="mainwindow.ui" line="595"/>
         <source>Sort by creation date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="113"/>
-        <location filename="mainwindow.ui" line="232"/>
-        <location filename="mainwindow.ui" line="351"/>
-        <location filename="mainwindow.ui" line="470"/>
+        <location filename="mainwindow.ui" line="156"/>
+        <location filename="mainwindow.ui" line="364"/>
+        <location filename="mainwindow.ui" line="483"/>
+        <location filename="mainwindow.ui" line="602"/>
         <source>Preserve original file path in file comments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="134"/>
-        <location filename="mainwindow.ui" line="253"/>
+        <location filename="mainwindow.ui" line="385"/>
         <source>Pictures Destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="144"/>
+        <location filename="mainwindow.ui" line="276"/>
         <source>Videos</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="263"/>
+        <location filename="mainwindow.ui" line="75"/>
+        <source>Add Input Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="82"/>
+        <source>Remove Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="163"/>
+        <source>Multiple Destinations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="184"/>
+        <source>Add Destination</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="194"/>
+        <source>Remove Destination</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="218"/>
+        <source>Picture Destination</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="262"/>
+        <source>Clear All Destinations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="395"/>
         <source>Documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="372"/>
+        <location filename="mainwindow.ui" line="504"/>
         <source>Documents Destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="382"/>
+        <location filename="mainwindow.ui" line="514"/>
         <source>Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="491"/>
+        <location filename="mainwindow.ui" line="623"/>
         <source>Audio Destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="501"/>
+        <location filename="mainwindow.ui" line="633"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="541"/>
+        <location filename="mainwindow.ui" line="673"/>
         <source>Output Destination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="548"/>
+        <location filename="mainwindow.ui" line="680"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="558"/>
+        <location filename="mainwindow.ui" line="690"/>
         <source>Begin file copy and sort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="561"/>
+        <location filename="mainwindow.ui" line="693"/>
         <source>Process</source>
         <translation type="unfinished"></translation>
     </message>

@@ -6,23 +6,28 @@
 
 class FileOperation {
 public:
+  struct DirectoryOutput {
+    QString mFolderInput{};
+    std::vector<QString> mFolderOutputs{};
+  };
   enum Category {
     Picture,
     Video,
+    Music,
     Document,
     Other
   };
 
   FileOperation();
 
-  const std::vector<QString>& GetPicturesFileExt() const;
-  const std::vector<QString>& GetPicturesFileInput() const;
+  const std::vector<QString>& GetFileExt(Category aCategory) const;
+  const std::vector<DirectoryOutput>& GetInputDirectories(Category aCategory) const;
   QString GetOutputDestinantion() const;
   QString GetOutputDestinantion(Category aCategory) const;
   void SetOutputDestinantion(QString aOutputDestination);
   void SetOutputDestinantion(Category aCategory, QString aOutputDestination);
   void AddFileExt(Category aCategory, QString aString);
-  void AddFileInputPath(Category aCategory, QString aString);
+  int AddFileInputPath(Category aCategory, QString aString);
   void RemoveFileExt(Category aCategory, int aIndex);
   void SetAllFileTypes(Category aCategory, bool aIsAllTypes);
   void SetDateSorted(Category aCategory, bool aIsDateSorted);
@@ -34,13 +39,16 @@ private:
       mFileExtensions(aFileExtensions) {}
     FileSortSettings() {}
 
-    std::vector<QString> mFileInput{};
+    std::vector<DirectoryOutput> mInputDirectories{};
     std::vector<QString> mFileExtensions{};
     QString mOutputDestination{};
     bool mIsDateSort = false;
     bool mIsFileComment = false;
     bool mIsAllFileTypes = false;
+    bool mIsMultiDestination = false;
   };
+  std::vector<DirectoryOutput>& GetInputDirectory(Category aCategory);
+
   QString mOutputDestination{};
   FileSortSettings mPictures;
   FileSortSettings mVideos;

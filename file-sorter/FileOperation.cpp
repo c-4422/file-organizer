@@ -10,21 +10,63 @@ FileOperation::FileOperation() :
                                             "psd", "ai", "raw", "arw",
                                             "cr", "rw2", "nrw", "k25"})) {}
 
-const std::vector<QString>& FileOperation::GetPicturesFileExt() const {
-    return mPictures.mFileExtensions;
+const std::vector<QString>& FileOperation::GetFileExt(Category aCategory) const {
+  switch (aCategory) {
+    case Category::Picture:
+      return mPictures.mFileExtensions;
+    case Category::Video:
+      return mVideos.mFileExtensions;
+    case Category::Music:
+      return mMusic.mFileExtensions;
+    case Category::Document:
+      return mDocuments.mFileExtensions;
+    case Category::Other:
+      return mOther.mFileExtensions;
+   }
 }
 
-const std::vector<QString>& FileOperation::GetPicturesFileInput() const {
-    return mPictures.mFileInput;
+const std::vector<FileOperation::DirectoryOutput>& FileOperation::GetInputDirectories(Category aCategory) const {
+    switch (aCategory) {
+      case Category::Picture:
+        return mPictures.mInputDirectories;
+      case Category::Video:
+        return mVideos.mInputDirectories;
+      case Category::Music:
+        return mMusic.mInputDirectories;
+      case Category::Document:
+        return mDocuments.mInputDirectories;
+      case Category::Other:
+        return mOther.mInputDirectories;
+    }
+}
+
+std::vector<FileOperation::DirectoryOutput>& FileOperation::GetInputDirectory(Category aCategory) {
+  switch (aCategory) {
+    case Category::Picture:
+      return mPictures.mInputDirectories;
+    case Category::Video:
+      return mVideos.mInputDirectories;
+    case Category::Music:
+      return mMusic.mInputDirectories;
+    case Category::Document:
+      return mDocuments.mInputDirectories;
+    case Category::Other:
+      return mOther.mInputDirectories;
+  }
 }
 
 QString FileOperation::GetOutputDestinantion(Category aCategory) const {
   switch (aCategory) {
     case Category::Picture:
       return mPictures.mOutputDestination;
-
-    default:
-      return QString{};
+    case Category::Video:
+      return mVideos.mOutputDestination;
+    case Category::Music:
+      return mMusic.mOutputDestination;
+    case Category::Document:
+      return mDocuments.mOutputDestination;
+    case Category::Other:
+      return mOther.mOutputDestination;
   }
 }
 
@@ -35,16 +77,19 @@ void FileOperation::AddFileExt(Category aCategory, QString aString) {
   }
 }
 
-void FileOperation::AddFileInputPath(Category aCategory, QString aString) {
-  switch (aCategory) {
-    case Category::Picture: {
-      auto it = mPictures.mFileInput.begin();
-      mPictures.mFileInput.insert(it, aString);
-      break;
-    }
-    default:
-      break;
+int FileOperation::AddFileInputPath(Category aCategory, QString aString) {
+  int returnIndex = 0;
+  auto inputDirectory = GetInputDirectory(aCategory);
+  // Check to see if we already have the input directory in the list
+  auto it = find_if(inputDirectory.begin(), inputDirectory.end(), [&aString](const DirectoryOutput& obj) {return obj.mFolderInput == aString;});
+  if (it != inputDirectory.end()) {
+    // Input entry found return the index.
+    returnIndex = std::distance(inputDirectory.begin(), it);
+  } else {
+    // Existing entry not found insert path.
+    inputDirectory.insert(it, FileOperation::DirectoryOutput{aString});
   }
+  return returnIndex;
 }
 
 void FileOperation::RemoveFileExt(Category aCategory, int aIndex) {

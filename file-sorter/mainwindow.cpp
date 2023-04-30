@@ -98,6 +98,3 @@ void MainWindow::on_clearUnifiedOutput_pressed()
     sFileOp.SetOutputDestinantion(QString{});
     ui->unifiedOutputField->setText(QString{});
 }
-
-// DEV-NOTE: When Processing is requested be sure to grab the text from the output fields and apply it to
-//           the sFileOp

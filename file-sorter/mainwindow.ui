@@ -6,136 +6,268 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>780</width>
-    <height>593</height>
+    <width>826</width>
+    <height>773</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+   <layout class="QVBoxLayout" name="verticalLayout_7">
+    <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Pictures">
        <attribute name="title">
         <string>Pictures</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+         <widget class="QSplitter" name="splitter_2">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="handleWidth">
+           <number>10</number>
+          </property>
+          <widget class="QSplitter" name="splitter">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="handleWidth">
+            <number>5</number>
+           </property>
+           <widget class="QWidget" name="">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Input Directories</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="pictureInputPaths"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="pictureInputButton">
+                 <property name="text">
+                  <string>Add Input Directory</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pictureInputRemove">
+                 <property name="text">
+                  <string>Remove Directory</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="">
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <widget class="QLabel" name="FileExtensionLabel">
+               <property name="text">
+                <string>File Extensions</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="picturExtList"/>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="isPictureAllFiles">
+               <property name="text">
+                <string>All file types</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="pictureFileExtEdit"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="addPictureFileExtButton">
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="removePictureFileExt">
+                 <property name="text">
+                  <string>Remove</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="">
+           <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>Input Directories</string>
+             <layout class="QHBoxLayout" name="pictures_sorting_options">
+              <property name="spacing">
+               <number>6</number>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="pictureInputPaths"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pictureInputButton">
-              <property name="text">
-               <string>Open Input Directory</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QLabel" name="FileExtensionLabel">
-              <property name="text">
-               <string>File Extensions</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="picturExtList"/>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="isPictureAllFiles">
-              <property name="text">
-               <string>All file types</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="pictureFileExtEdit"/>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
               <property name="topMargin">
                <number>0</number>
               </property>
               <item>
-               <widget class="QPushButton" name="addPictureFileExtButton">
+               <widget class="QCheckBox" name="isPictureDateSorted">
                 <property name="text">
-                 <string>Add</string>
+                 <string>Sort by creation date</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="removePictureFileExt">
+               <widget class="QCheckBox" name="isPictureFileComments">
                 <property name="text">
-                 <string>Remove</string>
+                 <string>Preserve original file path in file comments</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="isPictureMultiDestination">
+                <property name="text">
+                 <string>Multiple Destinations</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QListWidget" name="pictureOutputDestinationList">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="addPictureDestination">
+                <property name="text">
+                 <string>Add Destination</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="removePictureDestination">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string>Remove Destination</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="output_horizontal">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLineEdit" name="pictureDestinationField">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pictureDestination">
+                <property name="text">
+                 <string>Picture Destination</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="clearPictureDestinations">
+                <property name="palette">
+                 <palette>
+                  <active>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>192</red>
+                      <green>28</green>
+                      <blue>40</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </active>
+                  <inactive>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>192</red>
+                      <green>28</green>
+                      <blue>40</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </inactive>
+                  <disabled>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>145</red>
+                      <green>145</green>
+                      <blue>144</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </disabled>
+                 </palette>
+                </property>
+                <property name="text">
+                 <string>Clear All Destinations</string>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
            </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="pictures_sorting_options">
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="isPictureDateSorted">
-            <property name="text">
-             <string>Sort by creation date</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="isPictureFileComments">
-            <property name="text">
-             <string>Preserve original file path in file comments</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="output_horizontal">
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QLineEdit" name="pictureDestinationField">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pictureDestination">
-            <property name="text">
-             <string>Pictures Destination</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -523,7 +655,7 @@
       </widget>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="topMargin">
        <number>10</number>
@@ -571,8 +703,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>780</width>
-     <height>30</height>
+     <width>826</width>
+     <height>29</height>
     </rect>
    </property>
   </widget>
