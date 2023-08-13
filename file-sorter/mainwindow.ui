@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>826</width>
-    <height>773</height>
+    <width>869</width>
+    <height>822</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>File Organizer By C-4422</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -27,6 +27,12 @@
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
          <widget class="QSplitter" name="splitter_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -52,7 +58,7 @@
            <property name="handleWidth">
             <number>5</number>
            </property>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
               <widget class="QLabel" name="label">
@@ -87,7 +93,7 @@
              </item>
             </layout>
            </widget>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <layout class="QVBoxLayout" name="verticalLayout">
              <item>
               <widget class="QLabel" name="FileExtensionLabel">
@@ -97,7 +103,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QListWidget" name="picturExtList"/>
+              <widget class="QListWidget" name="pictureExtList"/>
              </item>
              <item>
               <widget class="QCheckBox" name="isPictureAllFiles">
@@ -133,8 +139,11 @@
             </layout>
            </widget>
           </widget>
-          <widget class="QWidget" name="">
+          <widget class="QWidget" name="layoutWidget">
            <layout class="QVBoxLayout" name="verticalLayout_6">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
+            </property>
             <item>
              <layout class="QHBoxLayout" name="pictures_sorting_options">
               <property name="spacing">
@@ -160,28 +169,32 @@
               <item>
                <widget class="QCheckBox" name="isPictureMultiDestination">
                 <property name="text">
-                 <string>Multiple Destinations</string>
+                 <string>Specific Destinations</string>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
             <item>
-             <widget class="QListWidget" name="pictureOutputDestinationList">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="output_list_container">
+              <item>
+               <widget class="QListWidget" name="pictureOutputDestinationList">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <layout class="QHBoxLayout" name="multiDestinationLayout">
               <property name="bottomMargin">
                <number>0</number>
               </property>
               <item>
                <widget class="QPushButton" name="addPictureDestination">
                 <property name="text">
-                 <string>Add Destination</string>
+                 <string>Add Specific Destination</string>
                 </property>
                </widget>
               </item>
@@ -191,14 +204,14 @@
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>Remove Destination</string>
+                 <string>Remove Specific Destination</string>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="output_horizontal">
+             <layout class="QHBoxLayout" name="output_horizontal_2">
               <property name="spacing">
                <number>6</number>
               </property>
@@ -275,118 +288,260 @@
        <attribute name="title">
         <string>Videos</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+         <widget class="QSplitter" name="splitter_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="handleWidth">
+           <number>10</number>
+          </property>
+          <widget class="QSplitter" name="splitter">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="handleWidth">
+            <number>5</number>
+           </property>
+           <widget class="QWidget" name="layoutWidget">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Input Directories</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="videoInputPaths"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="videoInputButton">
+                 <property name="text">
+                  <string>Add Input Directory</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="videoInputRemove">
+                 <property name="text">
+                  <string>Remove Directory</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="layoutWidget">
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <widget class="QLabel" name="FileExtensionLabel">
+               <property name="text">
+                <string>File Extensions</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="videoExtList"/>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="isVideoAllFiles">
+               <property name="text">
+                <string>All file types</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="videoFileExtEdit"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="addVideoFileExtButton">
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="removeVideoFileExt">
+                 <property name="text">
+                  <string>Remove</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="layoutWidget">
+           <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>Input Directories</string>
+             <layout class="QHBoxLayout" name="videos_sorting_options">
+              <property name="spacing">
+               <number>6</number>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="videoInputPaths"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="videoInputButton">
-              <property name="text">
-               <string>Open Input Directory</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QLabel" name="FileExtensionLabel">
-              <property name="text">
-               <string>File Extensions</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="videoExtList"/>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="isVideoAllFiles">
-              <property name="text">
-               <string>All file types</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="videoFileExtEdit"/>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
               <property name="topMargin">
                <number>0</number>
               </property>
               <item>
-               <widget class="QPushButton" name="addVideoFileExtButton">
+               <widget class="QCheckBox" name="isVideoDateSorted">
                 <property name="text">
-                 <string>Add</string>
+                 <string>Sort by creation date</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="removeVideoFileExt">
+               <widget class="QCheckBox" name="isVideoFileComments">
                 <property name="text">
-                 <string>Remove</string>
+                 <string>Preserve original file path in file comments</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="isVideoMultiDestination">
+                <property name="text">
+                 <string>Specific Destinations</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="output_list_container">
+              <item>
+               <widget class="QListWidget" name="videoOutputDestinationList">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="multiDestinationLayout">
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="addVideoDestination">
+                <property name="text">
+                 <string>Add Specific Destination</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="removeVideoDestination">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string>Remove Specific Destination</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="output_horizontal_2">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLineEdit" name="videoDestinationField">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="videoDestination">
+                <property name="text">
+                 <string>Video Destination</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="clearAudioDestinations">
+                <property name="palette">
+                 <palette>
+                  <active>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>192</red>
+                      <green>28</green>
+                      <blue>40</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </active>
+                  <inactive>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>192</red>
+                      <green>28</green>
+                      <blue>40</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </inactive>
+                  <disabled>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>145</red>
+                      <green>145</green>
+                      <blue>144</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </disabled>
+                 </palette>
+                </property>
+                <property name="text">
+                 <string>Clear All Destinations</string>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
            </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="videos_sorting_options">
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="isVideoDateSorted">
-            <property name="text">
-             <string>Sort by creation date</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="isVideoFileComments">
-            <property name="text">
-             <string>Preserve original file path in file comments</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="output_horizontal">
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QLineEdit" name="videoDestinationField">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="videoDestination">
-            <property name="text">
-             <string>Pictures Destination</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -394,118 +549,260 @@
        <attribute name="title">
         <string>Documents</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+         <widget class="QSplitter" name="splitter_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="handleWidth">
+           <number>10</number>
+          </property>
+          <widget class="QSplitter" name="splitter">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="handleWidth">
+            <number>5</number>
+           </property>
+           <widget class="QWidget" name="layoutWidget">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Input Directories</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="documentInputPaths"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="documentInputButton">
+                 <property name="text">
+                  <string>Add Input Directory</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="documentInputRemove">
+                 <property name="text">
+                  <string>Remove Directory</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="layoutWidget">
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <widget class="QLabel" name="FileExtensionLabel">
+               <property name="text">
+                <string>File Extensions</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="documentExtList"/>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="isDocumentAllFiles">
+               <property name="text">
+                <string>All file types</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="documentFileExtEdit"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="addDocumentFileExtButton">
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="removeDocumentFileExt">
+                 <property name="text">
+                  <string>Remove</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="layoutWidget">
+           <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>Input Directories</string>
+             <layout class="QHBoxLayout" name="documents_sorting_options">
+              <property name="spacing">
+               <number>6</number>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="documentsInputPaths"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="documentsInputButton">
-              <property name="text">
-               <string>Open Input Directory</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QLabel" name="FileExtensionLabel">
-              <property name="text">
-               <string>File Extensions</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="documentsExtList"/>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="isDocumentsAllFiles">
-              <property name="text">
-               <string>All file types</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="documentsFileExtEdit"/>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
               <property name="topMargin">
                <number>0</number>
               </property>
               <item>
-               <widget class="QPushButton" name="addDocumentFileExtButton">
+               <widget class="QCheckBox" name="isDocumentDateSorted">
                 <property name="text">
-                 <string>Add</string>
+                 <string>Sort by creation date</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="removeDocumentFileExt">
+               <widget class="QCheckBox" name="isDocumentFileComments">
                 <property name="text">
-                 <string>Remove</string>
+                 <string>Preserve original file path in file comments</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="isDocumentMultiDestination">
+                <property name="text">
+                 <string>Specific Destinations</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="output_list_container">
+              <item>
+               <widget class="QListWidget" name="documentOutputDestinationList">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="multiDestinationLayout">
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="addDocumentDestination">
+                <property name="text">
+                 <string>Add Specific Destination</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="removeDocumentDestination">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string>Remove Specific Destination</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="output_horizontal_2">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLineEdit" name="documentDestinationField">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="documentDestination">
+                <property name="text">
+                 <string>Document Destination</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="clearDocumentDestinations">
+                <property name="palette">
+                 <palette>
+                  <active>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>192</red>
+                      <green>28</green>
+                      <blue>40</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </active>
+                  <inactive>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>192</red>
+                      <green>28</green>
+                      <blue>40</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </inactive>
+                  <disabled>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>145</red>
+                      <green>145</green>
+                      <blue>144</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </disabled>
+                 </palette>
+                </property>
+                <property name="text">
+                 <string>Clear All Destinations</string>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
            </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="documents_sorting_options">
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="isDocumentDateSorted">
-            <property name="text">
-             <string>Sort by creation date</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="isDocumentFileComments">
-            <property name="text">
-             <string>Preserve original file path in file comments</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="output_horizontal">
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QLineEdit" name="documentsDestinationField">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="documentDestination">
-            <property name="text">
-             <string>Documents Destination</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -513,118 +810,260 @@
        <attribute name="title">
         <string>Audio</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+         <widget class="QSplitter" name="splitter_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="handleWidth">
+           <number>10</number>
+          </property>
+          <widget class="QSplitter" name="splitter">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="handleWidth">
+            <number>5</number>
+           </property>
+           <widget class="QWidget" name="layoutWidget">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Input Directories</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="audioInputPaths"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="audioInputButton">
+                 <property name="text">
+                  <string>Add Input Directory</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="audioInputRemove">
+                 <property name="text">
+                  <string>Remove Directory</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="layoutWidget">
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <widget class="QLabel" name="FileExtensionLabel">
+               <property name="text">
+                <string>File Extensions</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="audioExtList"/>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="isAudioAllFiles">
+               <property name="text">
+                <string>All file types</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="audioFileExtEdit"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="addAudioFileExtButton">
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="removeAudioFileExt">
+                 <property name="text">
+                  <string>Remove</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="layoutWidget">
+           <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="audioInputLabel">
-              <property name="text">
-               <string>Input Directories</string>
+             <layout class="QHBoxLayout" name="audio_sorting_options">
+              <property name="spacing">
+               <number>6</number>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="audioInputPaths"/>
-            </item>
-            <item>
-             <widget class="QPushButton" name="audioInputButton">
-              <property name="text">
-               <string>Open Input Directory</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QLabel" name="FileExtensionLabel">
-              <property name="text">
-               <string>File Extensions</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QListWidget" name="audioExtList"/>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="isAudioAllFiles">
-              <property name="text">
-               <string>All file types</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="audioFileExtEdit"/>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
               <property name="topMargin">
                <number>0</number>
               </property>
               <item>
-               <widget class="QPushButton" name="addAudioFileExtButton">
+               <widget class="QCheckBox" name="isAudioDateSorted">
                 <property name="text">
-                 <string>Add</string>
+                 <string>Sort by creation date</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="removeAudioFileExt">
+               <widget class="QCheckBox" name="isAudioFileComments">
                 <property name="text">
-                 <string>Remove</string>
+                 <string>Preserve original file path in file comments</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="isAudioMultiDestination">
+                <property name="text">
+                 <string>Specific Destinations</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="output_list_container">
+              <item>
+               <widget class="QListWidget" name="audioOutputDestinationList">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="multiDestinationLayout">
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="addAudioDestination">
+                <property name="text">
+                 <string>Add Specific Destination</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="removeAudioDestination">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string>Remove Specific Destination</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="output_horizontal_2">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLineEdit" name="audioDestinationField">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="audioDestination">
+                <property name="text">
+                 <string>Audio Destination</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="clearVideoDestinations">
+                <property name="palette">
+                 <palette>
+                  <active>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>192</red>
+                      <green>28</green>
+                      <blue>40</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </active>
+                  <inactive>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>192</red>
+                      <green>28</green>
+                      <blue>40</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </inactive>
+                  <disabled>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>145</red>
+                      <green>145</green>
+                      <blue>144</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </disabled>
+                 </palette>
+                </property>
+                <property name="text">
+                 <string>Clear All Destinations</string>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
            </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="audio_sorting_options">
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QCheckBox" name="isAudioDateSorted">
-            <property name="text">
-             <string>Sort by creation date</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="isAudioFileComments">
-            <property name="text">
-             <string>Preserve original file path in file comments</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="output_horizontal">
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QLineEdit" name="audioDestinationField">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="audioDestination">
-            <property name="text">
-             <string>Audio Destination</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -632,24 +1071,260 @@
        <attribute name="title">
         <string>Other</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
+         <widget class="QSplitter" name="splitter_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="handleWidth">
+           <number>10</number>
+          </property>
+          <widget class="QSplitter" name="splitter">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="handleWidth">
+            <number>5</number>
+           </property>
+           <widget class="QWidget" name="layoutWidget">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Input Directories</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="otherInputPaths"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="otherInputButton">
+                 <property name="text">
+                  <string>Add Input Directory</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="otherInputRemove">
+                 <property name="text">
+                  <string>Remove Directory</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="layoutWidget">
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <widget class="QLabel" name="FileExtensionLabel">
+               <property name="text">
+                <string>File Extensions</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="otherExtList"/>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="isOtherAllFiles">
+               <property name="text">
+                <string>All file types</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="otherFileExtEdit"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="addOtherFileExtButton">
+                 <property name="text">
+                  <string>Add</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="removeOtherFileExt">
+                 <property name="text">
+                  <string>Remove</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="layoutWidget">
+           <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="VideoInputLabel">
-              <property name="text">
-               <string>Input Directories</string>
+             <layout class="QHBoxLayout" name="other_sorting_options">
+              <property name="spacing">
+               <number>6</number>
               </property>
-             </widget>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QCheckBox" name="isOtherDateSorted">
+                <property name="text">
+                 <string>Sort by creation date</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="isOtherFileComments">
+                <property name="text">
+                 <string>Preserve original file path in file comments</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="isOtherMultiDestination">
+                <property name="text">
+                 <string>Specific Destinations</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
-             <widget class="QListWidget" name="listWidget"/>
+             <layout class="QHBoxLayout" name="output_list_container">
+              <item>
+               <widget class="QListWidget" name="otherOutputDestinationList">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="multiDestinationLayout">
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="addOtherDestination">
+                <property name="text">
+                 <string>Add Specific Destination</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="removeOtherDestination">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string>Remove Specific Destination</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="output_horizontal_2">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLineEdit" name="otherDestinationField">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="otherDestination">
+                <property name="text">
+                 <string>Other Destination</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="clearOtherDestinations">
+                <property name="palette">
+                 <palette>
+                  <active>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>192</red>
+                      <green>28</green>
+                      <blue>40</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </active>
+                  <inactive>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>192</red>
+                      <green>28</green>
+                      <blue>40</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </inactive>
+                  <disabled>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>145</red>
+                      <green>145</green>
+                      <blue>144</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </disabled>
+                 </palette>
+                </property>
+                <property name="text">
+                 <string>Clear All Destinations</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
-          </item>
-         </layout>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -703,8 +1378,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>826</width>
-     <height>29</height>
+     <width>869</width>
+     <height>28</height>
     </rect>
    </property>
   </widget>

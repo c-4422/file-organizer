@@ -23,6 +23,11 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.hpp
         mainwindow.ui
+        ./UI/Pictures.cpp
+        ./UI/Audio.cpp
+        ./UI/Documents.cpp
+        ./UI/Other.cpp
+        ./UI/Videos.cpp
         ${TS_FILES}
 )
 
