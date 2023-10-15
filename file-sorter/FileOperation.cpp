@@ -174,7 +174,9 @@ void FileOperation::SetOutputDestinantion(const Category aCategory,
 void FileOperation::SetMultiDestination(const Category aCategory,
                                         const size_t aIndex,
                                         const bool aIsMultiDestination) {
-  GetFileSortSettings(aCategory)
-      ->mInputDirectories[aIndex]
-      .mIsMultiDestination = aIsMultiDestination;
+  if (const auto *fileSortSettings = GetFileSortSettings(aCategory);
+      aIndex < fileSortSettings->mInputDirectories.size())
+    GetFileSortSettings(aCategory)
+        ->mInputDirectories[aIndex]
+        .mIsMultiDestination = aIsMultiDestination;
 }

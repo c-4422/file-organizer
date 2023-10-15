@@ -11,7 +11,11 @@ public:
     QString mFolderInput{};
     std::vector<QString> mFolderOutputs{};
   };
-  enum Category { Picture, Video, Audio, Document, Other };
+  enum class Category { Picture, Video, Audio, Document, Other, Invalid };
+
+  static constexpr std::initializer_list<Category> AllCategories = {
+      Category::Picture, Category::Video, Category::Audio, Category::Document,
+      Category::Other};
 
   FileOperation();
 
