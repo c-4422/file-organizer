@@ -72,12 +72,16 @@ FileOperation::GetInputDirectories(Category aCategory) const {
   return GetConstantFileSortSettings(aCategory).mInputDirectories;
 }
 
-const std::vector<QString> &
-FileOperation::GetOutputDirectories(Category aCategory,
+const std::vector<QString> *
+FileOperation::GetOutputDirectories(const Category aCategory,
                                     const size_t aIndex) const {
-  return GetConstantFileSortSettings(aCategory)
-      .mInputDirectories[aIndex]
-      .mFolderOutputs;
+  if (const auto fileSettings = GetConstantFileSortSettings(aCategory);
+      aIndex < fileSettings.mInputDirectories.size()) {
+    return &GetConstantFileSortSettings(aCategory)
+                .mInputDirectories[aIndex]
+                .mFolderOutputs;
+  }
+  return nullptr;
 }
 
 std::vector<FileOperation::DirectoryOutput> *
@@ -89,46 +93,50 @@ QString FileOperation::GetOutputDestinantion(Category aCategory) const {
   return GetConstantFileSortSettings(aCategory).mOutputDestination;
 }
 
-void FileOperation::AddFileExt(Category aCategory, QString aString) {
+void FileOperation::AddFileExt(Category aCategory, QString aPath) {
   auto fileSortSettings = GetFileSortSettings(aCategory);
   fileSortSettings->mFileExtensions.insert(
-      fileSortSettings->mFileExtensions.begin(), aString);
+      fileSortSettings->mFileExtensions.begin(), aPath);
 }
 
-int FileOperation::AddFileInputPath(Category aCategory, QString aString) {
+int FileOperation::AddFileInputPath(Category aCategory, QString aPath) {
   int returnIndex = 0;
   auto inputDirectory = GetInputDirectory(aCategory);
   // Check to see if we already have the input directory in the list
   auto it = find_if(inputDirectory->begin(), inputDirectory->end(),
-                    [&aString](const DirectoryOutput &obj) {
-                      return obj.mFolderInput == aString;
+                    [&aPath](const DirectoryOutput &obj) {
+                      return obj.mFolderInput == aPath;
                     });
   if (it != inputDirectory->end()) {
     // Input entry found return the index.
     returnIndex = std::distance(inputDirectory->begin(), it);
   } else {
     // Existing entry not found insert path.
-    inputDirectory->insert(it, FileOperation::DirectoryOutput{false, aString});
+    inputDirectory->insert(it,
+                           FileOperation::DirectoryOutput{false, false, aPath});
   }
   return returnIndex;
 }
 
 int FileOperation::AddSpecificOuputPath(const Category aCategory,
-                                        const size_t aIndex, QString aString) {
+                                        const size_t aIndex, QString aPath) {
   int returnIndex = 0;
-  auto outputPaths =
-      &GetFileSortSettings(aCategory)->mInputDirectories[aIndex].mFolderOutputs;
-  // Check to see if we already have the output directory in the list
-  auto it = find_if(outputPaths->begin(), outputPaths->end(),
-                    [&aString](const QString &memberString) {
-                      return memberString == aString;
-                    });
-  if (it != outputPaths->end()) {
-    // Input entry found return the index.
-    returnIndex = std::distance(outputPaths->begin(), it);
-  } else {
-    // Existing entry not found insert path.
-    outputPaths->insert(it, aString);
+  if (FileOperation::FileSortSettings *fileSettings =
+          GetFileSortSettings(aCategory);
+      aIndex < fileSettings->mInputDirectories.size()) {
+    auto outputPaths = &fileSettings->mInputDirectories[aIndex].mFolderOutputs;
+    // Check to see if we already have the output directory in the list
+    auto it = find_if(outputPaths->begin(), outputPaths->end(),
+                      [&aPath](const QString &memberString) {
+                        return memberString == aPath;
+                      });
+    if (it != outputPaths->end()) {
+      // Input entry found return the index.
+      returnIndex = std::distance(outputPaths->begin(), it);
+    } else {
+      // Existing entry not found insert path.
+      outputPaths->insert(it, aPath);
+    }
   }
   return returnIndex;
 }
@@ -156,9 +164,12 @@ void FileOperation::SetAllFileTypes(const Category aCategory,
   GetFileSortSettings(aCategory)->mIsAllFileTypes = aIsAllTypes;
 }
 
-void FileOperation::SetDateSorted(const Category aCategory,
+void FileOperation::SetDateSorted(const Category aCategory, const size_t aIndex,
                                   const bool aIsDateSorted) {
-  GetFileSortSettings(aCategory)->mIsDateSort = aIsDateSorted;
+  if (aIndex < GetFileSortSettings(aCategory)->mInputDirectories.size()) {
+    GetFileSortSettings(aCategory)->mInputDirectories[aIndex].mIsDateSort =
+        aIsDateSorted;
+  }
 }
 
 void FileOperation::SetFileComment(const Category aCategory,
@@ -183,14 +194,19 @@ void FileOperation::SetMultiDestination(const Category aCategory,
 bool FileOperation::IsMultiDestination(const Category aCategory,
                                        size_t aIndex) {
   if (const auto *fileSortSettings = GetFileSortSettings(aCategory);
-      aIndex < fileSortSettings->mInputDirectories.size()) {
+      fileSortSettings && aIndex < fileSortSettings->mInputDirectories.size()) {
     return fileSortSettings->mInputDirectories[aIndex].mIsMultiDestination;
   }
   return false;
 }
 
-bool FileOperation::IsDateSort(Category aCategory) {
-  return GetFileSortSettings(aCategory)->mIsDateSort;
+bool FileOperation::IsDateSort(const Category aCategory, const size_t aIndex) {
+  if (aIndex < GetFileSortSettings(aCategory)->mInputDirectories.size()) {
+    return GetFileSortSettings(aCategory)
+        ->mInputDirectories[aIndex]
+        .mIsDateSort;
+  }
+  return false;
 }
 
 bool FileOperation::IsFileComment(Category aCategory) {

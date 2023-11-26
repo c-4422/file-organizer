@@ -193,6 +193,9 @@
              </property>
              <item>
               <widget class="QCheckBox" name="IsDateSorted">
+               <property name="toolTip">
+                <string>Select a input directory to apply this property to. This will sort the files into folders based off year and month.</string>
+               </property>
                <property name="text">
                 <string>Sort All Inputs by creation date</string>
                </property>
@@ -386,7 +389,7 @@
      <x>0</x>
      <y>0</y>
      <width>764</width>
-     <height>28</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

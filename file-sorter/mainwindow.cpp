@@ -11,12 +11,20 @@
 #include "./ui_mainwindow.h"
 #include <QListWidget>
 #include <QStringBuilder>
+#include <limits>
+
+static constexpr size_t InvalidVectorIndex = std::numeric_limits<size_t>::max();
 
 static FileOperation::Category TabIndexToCategory(const int aIndex) {
   if (aIndex < FileOperation::AllCategories.size()) {
     return *(FileOperation::AllCategories.begin() + aIndex);
   }
   return FileOperation::Category::Invalid;
+}
+
+static size_t ConvertToSizeT(const int aIndex) {
+  // Row indexes can be negative when row is invalid, convert to size_t.
+  return aIndex >= 0 ? static_cast<size_t>(aIndex) : InvalidVectorIndex;
 }
 
 static QString GetCategoryString(const FileOperation::Category aCategory) {
@@ -55,11 +63,17 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::UpdateInterface() {
+  const size_t inputListRow =
+      ConvertToSizeT(ui->InputPaths->currentIndex().row());
+
   UpdateFileExtensionList();
   UpdateInputList();
   UpdateOutputList();
   on_IsMultiDestination_toggled(ui->IsMultiDestination->isChecked());
-  ui->IsDateSorted->setChecked(sFileOp.IsDateSort(mCurrentCategory));
+  ui->IsDateSorted->setEnabled(
+      inputListRow < sFileOp.GetInputDirectories(mCurrentCategory).size());
+  ui->IsDateSorted->setChecked(
+      sFileOp.IsDateSort(mCurrentCategory, inputListRow));
   ui->IsFileComments->setChecked(sFileOp.IsFileComment(mCurrentCategory));
   ui->IsAllFileExtensions->setChecked(sFileOp.IsAllFileTypes(mCurrentCategory));
 }
@@ -112,7 +126,8 @@ void MainWindow::on_IsAllFileExtensions_toggled(bool checked) {
 }
 
 void MainWindow::on_IsDateSorted_toggled(bool checked) {
-  sFileOp.SetDateSorted(mCurrentCategory, checked);
+  sFileOp.SetDateSorted(mCurrentCategory, ui->InputPaths->currentIndex().row(),
+                        checked);
 }
 
 void MainWindow::on_IsFileComments_toggled(bool checked) {
@@ -143,12 +158,14 @@ void MainWindow::on_IsMultiDestination_toggled(bool checked) {
 }
 
 void MainWindow::UpdateOutputList() {
-  ui->InputPaths->clear();
-  if (auto currentRow = ui->OutputDestinationList->currentIndex().row();
-      currentRow < sFileOp.GetInputDirectories(mCurrentCategory).size()) {
-    for (auto path :
-         sFileOp.GetOutputDirectories(mCurrentCategory, currentRow)) {
-      ui->InputPaths->addItem(path);
+  ui->OutputDestinationList->clear();
+
+  if (auto *const outputDirectories = sFileOp.GetOutputDirectories(
+          mCurrentCategory,
+          ConvertToSizeT(ui->InputPaths->currentIndex().row()));
+      outputDirectories) {
+    for (const auto path : *outputDirectories) {
+      ui->OutputDestinationList->addItem(path);
     }
   }
 }
@@ -157,16 +174,19 @@ void MainWindow::on_AddDestination_pressed() {
   // Specific destination per input path
   QString categoryString = GetCategoryString(mCurrentCategory);
   QStringBuilder inputDirectoryString =
-      "Open " % categoryString % " Input Destination";
+      "Open " % categoryString % " Specific Output Directory";
   sFileOp.AddSpecificOuputPath(
-      mCurrentCategory, ui->OutputDestinationList->currentIndex().row(),
+      mCurrentCategory, ConvertToSizeT(ui->InputPaths->currentIndex().row()),
       QFileDialog::getExistingDirectory(this, inputDirectoryString));
   UpdateOutputList();
 }
 
 void MainWindow::on_InputPaths_currentRowChanged(int currentRow) {
+  const size_t index = ConvertToSizeT(currentRow);
   ui->IsMultiDestination->setDisabled(
-      sFileOp.IsMultiDestination(mCurrentCategory, currentRow));
+      sFileOp.IsMultiDestination(mCurrentCategory, index));
+  ui->IsDateSorted->setEnabled(true);
+  ui->IsDateSorted->setChecked(sFileOp.IsDateSort(mCurrentCategory, index));
   UpdateOutputList();
 }
 

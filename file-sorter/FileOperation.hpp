@@ -2,6 +2,7 @@
 #define FILEOPERATION_HPP
 
 #include <QString>
+#include <optional>
 #include <vector>
 
 class FileOperation {
@@ -10,6 +11,7 @@ public:
 
   struct DirectoryOutput {
     bool mIsMultiDestination = false;
+    bool mIsDateSort = false;
     QString mFolderInput{};
     std::vector<QString> mFolderOutputs{};
   };
@@ -23,24 +25,24 @@ public:
   const std::vector<QString> &GetFileExt(Category aCategory) const;
   const std::vector<DirectoryOutput> &
   GetInputDirectories(Category aCategory) const;
-  const std::vector<QString> &GetOutputDirectories(Category aCategory,
+  const std::vector<QString> *GetOutputDirectories(Category aCategory,
                                                    size_t aIndex) const;
   QString GetOutputDestinantion() const;
   QString GetOutputDestinantion(Category aCategory) const;
   void SetOutputDestinantion(QString aOutputDestination);
   void SetOutputDestinantion(Category aCategory, QString aOutputDestination);
-  void AddFileExt(Category aCategory, QString aString);
-  int AddFileInputPath(Category aCategory, QString aString);
-  int AddSpecificOuputPath(Category aCategory, size_t aIndex, QString aString);
+  void AddFileExt(Category aCategory, QString aPath);
+  int AddFileInputPath(Category aCategory, QString aPath);
+  int AddSpecificOuputPath(Category aCategory, size_t aIndex, QString aPath);
   void RemoveFileInputPath(Category aCategory, size_t aIndex);
   void RemoveFileExt(Category aCategory, size_t aIndex);
   void SetAllFileTypes(Category aCategory, bool aIsAllTypes);
-  void SetDateSorted(Category aCategory, bool aIsDateSorted);
+  void SetDateSorted(Category aCategory, size_t aIndex, bool aIsDateSorted);
   void SetFileComment(Category aCategory, bool aIsFileComment);
   void SetMultiDestination(Category aCategory, size_t aIndex,
                            bool aIsMultiDestination);
   bool IsMultiDestination(Category aCategory, size_t aIndex);
-  bool IsDateSort(Category aCategory);
+  bool IsDateSort(Category aCategory, size_t aIndex);
   bool IsFileComment(Category aCategory);
   bool IsAllFileTypes(Category aCategory);
 
@@ -53,7 +55,6 @@ private:
     std::vector<DirectoryOutput> mInputDirectories{};
     std::vector<QString> mFileExtensions{};
     QString mOutputDestination{};
-    bool mIsDateSort = false;
     bool mIsFileComment = false;
     bool mIsAllFileTypes = false;
   };
