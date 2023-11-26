@@ -6,14 +6,15 @@
 
 class FileOperation {
 public:
+  enum class Category : int { Picture, Video, Audio, Document, Other, Invalid };
+
   struct DirectoryOutput {
     bool mIsMultiDestination = false;
     QString mFolderInput{};
     std::vector<QString> mFolderOutputs{};
   };
-  enum class Category { Picture, Video, Audio, Document, Other, Invalid };
 
-  static constexpr std::initializer_list<Category> AllCategories = {
+  static constexpr std::initializer_list AllCategories = {
       Category::Picture, Category::Video, Category::Audio, Category::Document,
       Category::Other};
 
@@ -38,6 +39,10 @@ public:
   void SetFileComment(Category aCategory, bool aIsFileComment);
   void SetMultiDestination(Category aCategory, size_t aIndex,
                            bool aIsMultiDestination);
+  bool IsMultiDestination(Category aCategory, size_t aIndex);
+  bool IsDateSort(Category aCategory);
+  bool IsFileComment(Category aCategory);
+  bool IsAllFileTypes(Category aCategory);
 
 private:
   struct FileSortSettings {

@@ -174,9 +174,29 @@ void FileOperation::SetOutputDestinantion(const Category aCategory,
 void FileOperation::SetMultiDestination(const Category aCategory,
                                         const size_t aIndex,
                                         const bool aIsMultiDestination) {
-  if (const auto *fileSortSettings = GetFileSortSettings(aCategory);
+  if (auto *fileSortSettings = GetFileSortSettings(aCategory);
       aIndex < fileSortSettings->mInputDirectories.size())
-    GetFileSortSettings(aCategory)
-        ->mInputDirectories[aIndex]
-        .mIsMultiDestination = aIsMultiDestination;
+    fileSortSettings->mInputDirectories[aIndex].mIsMultiDestination =
+        aIsMultiDestination;
+}
+
+bool FileOperation::IsMultiDestination(const Category aCategory,
+                                       size_t aIndex) {
+  if (const auto *fileSortSettings = GetFileSortSettings(aCategory);
+      aIndex < fileSortSettings->mInputDirectories.size()) {
+    return fileSortSettings->mInputDirectories[aIndex].mIsMultiDestination;
+  }
+  return false;
+}
+
+bool FileOperation::IsDateSort(Category aCategory) {
+  return GetFileSortSettings(aCategory)->mIsDateSort;
+}
+
+bool FileOperation::IsFileComment(Category aCategory) {
+  return GetFileSortSettings(aCategory)->mIsFileComment;
+}
+
+bool FileOperation::IsAllFileTypes(Category aCategory) {
+  return GetFileSortSettings(aCategory)->mIsAllFileTypes;
 }

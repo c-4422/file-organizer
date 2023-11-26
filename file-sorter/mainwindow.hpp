@@ -38,7 +38,6 @@ private slots:
   void on_IsMultiDestination_toggled(bool checked);
   void on_AddDestination_pressed();
   void on_InputPaths_currentRowChanged(int currentRow);
-  void on_tabWidget_currentChanged(int index);
 
 private:
   void UpdateInterface();

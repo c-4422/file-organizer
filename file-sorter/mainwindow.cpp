@@ -13,20 +13,10 @@
 #include <QStringBuilder>
 
 static FileOperation::Category TabIndexToCategory(const int aIndex) {
-  switch (aIndex) {
-  case 0:
-    return FileOperation::Category::Picture;
-  case 1:
-    return FileOperation::Category::Video;
-  case 2:
-    return FileOperation::Category::Document;
-  case 3:
-    return FileOperation::Category::Audio;
-  case 4:
-    return FileOperation::Category::Other;
-  default:
-    return FileOperation::Category::Invalid;
+  if (aIndex < FileOperation::AllCategories.size()) {
+    return *(FileOperation::AllCategories.begin() + aIndex);
   }
+  return FileOperation::Category::Invalid;
 }
 
 static QString GetCategoryString(const FileOperation::Category aCategory) {
@@ -49,8 +39,12 @@ static QString GetCategoryString(const FileOperation::Category aCategory) {
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
-  mTabBar = new QTabBar;
   // Set up tabs
+  mTabBar = new QTabBar;
+  connect(mTabBar, &QTabBar::currentChanged, [this](int index) {
+    mCurrentCategory = TabIndexToCategory(index);
+    UpdateInterface();
+  });
   for (auto category : FileOperation::AllCategories) {
     mTabBar->addTab(GetCategoryString(category));
   }
@@ -61,11 +55,13 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::UpdateInterface() {
-  // TODO: Need ui->tabWidget->currentIndex()
-  mCurrentCategory = TabIndexToCategory(0);
   UpdateFileExtensionList();
   UpdateInputList();
+  UpdateOutputList();
   on_IsMultiDestination_toggled(ui->IsMultiDestination->isChecked());
+  ui->IsDateSorted->setChecked(sFileOp.IsDateSort(mCurrentCategory));
+  ui->IsFileComments->setChecked(sFileOp.IsFileComment(mCurrentCategory));
+  ui->IsAllFileExtensions->setChecked(sFileOp.IsAllFileTypes(mCurrentCategory));
 }
 
 void MainWindow::UpdateFileExtensionList() {
@@ -148,9 +144,12 @@ void MainWindow::on_IsMultiDestination_toggled(bool checked) {
 
 void MainWindow::UpdateOutputList() {
   ui->InputPaths->clear();
-  for (auto path : sFileOp.GetOutputDirectories(
-           mCurrentCategory, ui->OutputDestinationList->currentIndex().row())) {
-    ui->InputPaths->addItem(path);
+  if (auto currentRow = ui->OutputDestinationList->currentIndex().row();
+      currentRow < sFileOp.GetInputDirectories(mCurrentCategory).size()) {
+    for (auto path :
+         sFileOp.GetOutputDirectories(mCurrentCategory, currentRow)) {
+      ui->InputPaths->addItem(path);
+    }
   }
 }
 
@@ -162,11 +161,13 @@ void MainWindow::on_AddDestination_pressed() {
   sFileOp.AddSpecificOuputPath(
       mCurrentCategory, ui->OutputDestinationList->currentIndex().row(),
       QFileDialog::getExistingDirectory(this, inputDirectoryString));
+  UpdateOutputList();
 }
 
 void MainWindow::on_InputPaths_currentRowChanged(int currentRow) {
   ui->IsMultiDestination->setDisabled(
-      currentRow < sFileOp.GetInputDirectories(mCurrentCategory).size());
+      sFileOp.IsMultiDestination(mCurrentCategory, currentRow));
+  UpdateOutputList();
 }
 
 void MainWindow::on_ClearUnifiedOutput_pressed() {
@@ -178,29 +179,4 @@ void MainWindow::on_OutputDestination_pressed() {
   sFileOp.SetOutputDestinantion(
       QFileDialog::getExistingDirectory(this, "Open Output Destination"));
   ui->UnifiedOutputField->setText(sFileOp.GetOutputDestinantion());
-}
-
-void MainWindow::on_tabWidget_currentChanged(int index) {
-  // Get ready for some hokey code...
-  // I don't think you can set multiple tabs to a singular layout (or at the
-  // very least I can't find anything in the documentation which suggests that).
-
-  // In order to get around this we will delete all of the widgets in the
-  // picture tab, reconstruct all of the widgets and push them over into
-  // whatever tab is selected changing the file operation category in the
-  // process.
-
-  // This allows us to reuse the same layout for every tab without having to
-  // actually construct a layout for each of them. This allows us to reuse the
-  // widget slots and therefore cuts down on code needed and other headaches.
-
-  // This is where I got the idea from:
-  // https://stackoverflow.com/questions/1891961/how-do-you-move-a-widget-from-one-tab-to-another-and-keep-a-layout
-  // mCurrentCategory = TabIndexToCategory(index);
-  // QLayout *layout = ui->tabWidget->widget(index)->layout();
-  // layout->removeWidget(ui->tabWidget->widget(index));
-  // delete layout;
-  // layout = new QVBoxLayout;
-  // layout->addWidget(ui->tabWidget->);
-  // ui->tabWidget->widget(index)->setLayout(layout);
 }
