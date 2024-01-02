@@ -1,5 +1,10 @@
 #include "FileOperation.hpp"
 
+#include "rapidjson/document.h"
+#include "rapidjson/prettywriter.h" // for stringify JSON
+#include <fstream>
+#include <iostream>
+
 FileOperation::FileOperation()
     : mPictures(FileOperation::FileSortSettings({"jpg",
                                                  "jpeg",
@@ -59,6 +64,24 @@ FileOperation::GetConstantFileSortSettings(const Category aCategory) const {
     return mDocuments;
   default:
     return mOther;
+  }
+}
+
+QString
+FileOperation::GetCategoryString(const FileOperation::Category aCategory) {
+  switch (aCategory) {
+  case FileOperation::Category::Picture:
+    return "Picture";
+  case FileOperation::Category::Video:
+    return "Video";
+  case FileOperation::Category::Document:
+    return "Documents";
+  case FileOperation::Category::Audio:
+    return "Audio";
+  case FileOperation::Category::Other:
+    return "Other";
+  default:
+    return "";
   }
 }
 
@@ -209,10 +232,81 @@ bool FileOperation::IsDateSort(const Category aCategory, const size_t aIndex) {
   return false;
 }
 
-bool FileOperation::IsFileComment(Category aCategory) {
+bool FileOperation::IsFileComment(const Category aCategory) {
   return GetFileSortSettings(aCategory)->mIsFileComment;
 }
 
-bool FileOperation::IsAllFileTypes(Category aCategory) {
+bool FileOperation::IsAllFileTypes(const Category aCategory) {
   return GetFileSortSettings(aCategory)->mIsAllFileTypes;
+}
+
+bool FileOperation::SaveConfiguration(const QString aFilePath) {
+  std::ofstream saveFile(aFilePath.toStdString());
+  rapidjson::StringBuffer outputString;
+  rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(outputString);
+
+  if (!saveFile) {
+    // Display error message.
+    return false;
+  }
+  writer.StartObject();
+  for (auto category : AllCategories) {
+    auto fileSortSettings = GetConstantFileSortSettings(category);
+    const auto categoryString = GetCategoryString(category).toStdString();
+    auto writeJsonKey = [&writer,
+                         &categoryString](const std::string aRightString) {
+      const std::string keyString = categoryString + aRightString;
+      writer.Key(keyString.c_str(), keyString.size());
+    };
+    writeJsonKey("DirectoryOutputs");
+    writer.StartArray();
+    for (int i = 0; 0 < fileSortSettings.mInputDirectories.size(); i++) {
+      writeJsonKey("IsMultiDestination");
+      writer.Bool(fileSortSettings.mInputDirectories[i].mIsMultiDestination);
+      writeJsonKey("FolderInput");
+      writer.String(fileSortSettings.mInputDirectories[i]
+                        .mFolderInput.toStdString()
+                        .c_str(),
+                    fileSortSettings.mInputDirectories[i].mFolderInput.size());
+      writeJsonKey("FolderOutputs");
+      writer.StartArray();
+      for (int j = 0;
+           j < fileSortSettings.mInputDirectories[i].mFolderOutputs.size();
+           j++) {
+        writer.String(
+            fileSortSettings.mInputDirectories[i]
+                .mFolderOutputs[j]
+                .toStdString()
+                .c_str(),
+            fileSortSettings.mInputDirectories[i].mFolderOutputs[j].size());
+      }
+      writer.EndArray();
+    }
+    writer.EndArray();
+    writeJsonKey("FileExtensions");
+    writer.StartArray();
+    for (int i = 0; i < fileSortSettings.mFileExtensions.size(); i++) {
+      writer.String(fileSortSettings.mFileExtensions[i].toStdString().c_str(),
+                    fileSortSettings.mFileExtensions[i].size());
+    }
+    writer.EndArray();
+    writeJsonKey("OutputDestination");
+    writer.String(fileSortSettings.mOutputDestination.toStdString().c_str(),
+                  fileSortSettings.mOutputDestination.size());
+    writeJsonKey("IsDateSorted");
+    writer.Bool(fileSortSettings.mIsDateSort);
+    writeJsonKey("IsFileComment");
+    writer.Bool(fileSortSettings.mIsFileComment);
+    writeJsonKey("IsAllFileTypes");
+    writer.Bool(fileSortSettings.mIsAllFileTypes);
+  }
+  writer.Key("OutputDestination");
+  writer.String(mOutputDestination.toStdString().c_str(),
+                mOutputDestination.size());
+  writer.EndObject();
+
+  saveFile << outputString.GetString();
+  saveFile.close();
+
+  return true;
 }

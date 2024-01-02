@@ -38,8 +38,9 @@ private slots:
   void on_IsMultiDestination_toggled(bool checked);
   void on_AddDestination_pressed();
   void on_InputPaths_currentRowChanged(int currentRow);
+  void on_actionSave_triggered();
 
-private:
+  private:
   void UpdateInterface();
   void UpdateFileExtensionList();
   void UpdateInputList();

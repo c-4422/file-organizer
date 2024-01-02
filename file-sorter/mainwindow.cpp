@@ -27,23 +27,6 @@ static size_t ConvertToSizeT(const int aIndex) {
   return aIndex >= 0 ? static_cast<size_t>(aIndex) : InvalidVectorIndex;
 }
 
-static QString GetCategoryString(const FileOperation::Category aCategory) {
-  switch (aCategory) {
-  case FileOperation::Category::Picture:
-    return "Picture";
-  case FileOperation::Category::Video:
-    return "Video";
-  case FileOperation::Category::Document:
-    return "Documents";
-  case FileOperation::Category::Audio:
-    return "Audio";
-  case FileOperation::Category::Other:
-    return "Other";
-  default:
-    return "";
-  }
-}
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
@@ -54,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
     UpdateInterface();
   });
   for (auto category : FileOperation::AllCategories) {
-    mTabBar->addTab(GetCategoryString(category));
+    mTabBar->addTab(FileOperation::GetCategoryString(category));
   }
   ui->tab_layout->layout()->addWidget(mTabBar);
   UpdateInterface();
@@ -93,7 +76,7 @@ void MainWindow::UpdateInputList() {
 }
 
 void MainWindow::on_Destination_pressed() {
-  QString categoryString = GetCategoryString(mCurrentCategory);
+  QString categoryString = FileOperation::GetCategoryString(mCurrentCategory);
   QStringBuilder openDirectoryString =
       "Open " % categoryString % " Output Destination";
   sFileOp.SetOutputDestinantion(
@@ -135,7 +118,7 @@ void MainWindow::on_IsFileComments_toggled(bool checked) {
 }
 
 void MainWindow::on_AddInputDirectory_pressed() {
-  QString categoryString = GetCategoryString(mCurrentCategory);
+  QString categoryString = FileOperation::GetCategoryString(mCurrentCategory);
   QStringBuilder inputDirectoryString =
       "Open " % categoryString % " Input Directory";
   sFileOp.AddFileInputPath(mCurrentCategory, QFileDialog::getExistingDirectory(
@@ -172,11 +155,11 @@ void MainWindow::UpdateOutputList() {
 
 void MainWindow::on_AddDestination_pressed() {
   // Specific destination per input path
-  QString categoryString = GetCategoryString(mCurrentCategory);
+  QString categoryString = FileOperation::GetCategoryString(mCurrentCategory);
   QStringBuilder inputDirectoryString =
       "Open " % categoryString % " Specific Output Directory";
   sFileOp.AddSpecificOuputPath(
-      mCurrentCategory, ConvertToSizeT(ui->InputPaths->currentIndex().row()),
+      mCurrentCategory, ConvertToSizeT(ui->InputPaths->currentIndex().row(),
       QFileDialog::getExistingDirectory(this, inputDirectoryString));
   UpdateOutputList();
 }
@@ -199,4 +182,13 @@ void MainWindow::on_OutputDestination_pressed() {
   sFileOp.SetOutputDestinantion(
       QFileDialog::getExistingDirectory(this, "Open Output Destination"));
   ui->UnifiedOutputField->setText(sFileOp.GetOutputDestinantion());
+}
+
+void MainWindow::on_actionSave_triggered() {
+  const QString savePath = sFileOp.GetConfigurationFilePath();
+  sFileOp.SaveConfiguration(
+      savePath.isEmpty()
+          ? QFileDialog::getSaveFileName(this, "Save Configuration", QString(),
+                                         QString("Json (*.json)"))
+          : savePath);
 }

@@ -22,12 +22,14 @@ public:
 
   FileOperation();
 
+  static QString GetCategoryString(FileOperation::Category aCategory);
   const std::vector<QString> &GetFileExt(Category aCategory) const;
   const std::vector<DirectoryOutput> &
   GetInputDirectories(Category aCategory) const;
   const std::vector<QString> *GetOutputDirectories(Category aCategory,
                                                    size_t aIndex) const;
   QString GetOutputDestinantion() const;
+  QString GetConfigurationFilePath() const;
   QString GetOutputDestinantion(Category aCategory) const;
   void SetOutputDestinantion(QString aOutputDestination);
   void SetOutputDestinantion(Category aCategory, QString aOutputDestination);
@@ -45,6 +47,7 @@ public:
   bool IsDateSort(Category aCategory, size_t aIndex);
   bool IsFileComment(Category aCategory);
   bool IsAllFileTypes(Category aCategory);
+  bool SaveConfiguration(QString aFilePath);
 
 private:
   struct FileSortSettings {
@@ -63,6 +66,7 @@ private:
   std::vector<DirectoryOutput> *GetInputDirectory(const Category aCategory);
 
   QString mOutputDestination{};
+  QString mOpenConfigurationFile{};
   FileSortSettings mPictures;
   FileSortSettings mVideos;
   FileSortSettings mAudio;
@@ -76,6 +80,10 @@ inline QString FileOperation::GetOutputDestinantion() const {
 
 inline void FileOperation::SetOutputDestinantion(QString aOutputDestination) {
   mOutputDestination = aOutputDestination;
+}
+
+inline QString FileOperation::GetConfigurationFilePath() const {
+  return mOpenConfigurationFile;
 }
 
 #endif // FILEOPERATION_HPP
