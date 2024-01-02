@@ -159,7 +159,7 @@ void MainWindow::on_AddDestination_pressed() {
   QStringBuilder inputDirectoryString =
       "Open " % categoryString % " Specific Output Directory";
   sFileOp.AddSpecificOuputPath(
-      mCurrentCategory, ConvertToSizeT(ui->InputPaths->currentIndex().row(),
+      mCurrentCategory, ConvertToSizeT(ui->InputPaths->currentIndex().row()),
       QFileDialog::getExistingDirectory(this, inputDirectoryString));
   UpdateOutputList();
 }

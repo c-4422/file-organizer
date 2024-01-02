@@ -263,6 +263,8 @@ bool FileOperation::SaveConfiguration(const QString aFilePath) {
     for (int i = 0; 0 < fileSortSettings.mInputDirectories.size(); i++) {
       writeJsonKey("IsMultiDestination");
       writer.Bool(fileSortSettings.mInputDirectories[i].mIsMultiDestination);
+      writeJsonKey("IsDateSorted");
+      writer.Bool(fileSortSettings.mInputDirectories[i].mIsDateSort);
       writeJsonKey("FolderInput");
       writer.String(fileSortSettings.mInputDirectories[i]
                         .mFolderInput.toStdString()
@@ -293,8 +295,6 @@ bool FileOperation::SaveConfiguration(const QString aFilePath) {
     writeJsonKey("OutputDestination");
     writer.String(fileSortSettings.mOutputDestination.toStdString().c_str(),
                   fileSortSettings.mOutputDestination.size());
-    writeJsonKey("IsDateSorted");
-    writer.Bool(fileSortSettings.mIsDateSort);
     writeJsonKey("IsFileComment");
     writer.Bool(fileSortSettings.mIsFileComment);
     writeJsonKey("IsAllFileTypes");
