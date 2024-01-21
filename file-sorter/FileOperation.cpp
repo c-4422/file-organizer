@@ -253,24 +253,22 @@ bool FileOperation::SaveConfiguration(const QString aFilePath) {
   for (auto category : AllCategories) {
     auto fileSortSettings = GetConstantFileSortSettings(category);
     const auto categoryString = GetCategoryString(category).toStdString();
-    auto writeJsonKey = [&writer,
-                         &categoryString](const std::string aRightString) {
-      const std::string keyString = categoryString + aRightString;
-      writer.Key(keyString.c_str(), keyString.size());
-    };
-    writeJsonKey("DirectoryOutputs");
+    writer.Key(categoryString.c_str(), categoryString.size());
+    writer.StartObject();
+    writer.Key("DirectoryOutputs");
     writer.StartArray();
-    for (int i = 0; 0 < fileSortSettings.mInputDirectories.size(); i++) {
-      writeJsonKey("IsMultiDestination");
+    for (int i = 0; i < fileSortSettings.mInputDirectories.size(); i++) {
+      writer.StartObject();
+      writer.Key("IsMultiDestination");
       writer.Bool(fileSortSettings.mInputDirectories[i].mIsMultiDestination);
-      writeJsonKey("IsDateSorted");
+      writer.Key("IsDateSorted");
       writer.Bool(fileSortSettings.mInputDirectories[i].mIsDateSort);
-      writeJsonKey("FolderInput");
+      writer.Key("FolderInput");
       writer.String(fileSortSettings.mInputDirectories[i]
                         .mFolderInput.toStdString()
                         .c_str(),
                     fileSortSettings.mInputDirectories[i].mFolderInput.size());
-      writeJsonKey("FolderOutputs");
+      writer.Key("FolderOutputs");
       writer.StartArray();
       for (int j = 0;
            j < fileSortSettings.mInputDirectories[i].mFolderOutputs.size();
@@ -283,22 +281,24 @@ bool FileOperation::SaveConfiguration(const QString aFilePath) {
             fileSortSettings.mInputDirectories[i].mFolderOutputs[j].size());
       }
       writer.EndArray();
+      writer.EndObject();
     }
     writer.EndArray();
-    writeJsonKey("FileExtensions");
+    writer.Key("FileExtensions");
     writer.StartArray();
     for (int i = 0; i < fileSortSettings.mFileExtensions.size(); i++) {
       writer.String(fileSortSettings.mFileExtensions[i].toStdString().c_str(),
                     fileSortSettings.mFileExtensions[i].size());
     }
     writer.EndArray();
-    writeJsonKey("OutputDestination");
+    writer.Key("OutputDestination");
     writer.String(fileSortSettings.mOutputDestination.toStdString().c_str(),
                   fileSortSettings.mOutputDestination.size());
-    writeJsonKey("IsFileComment");
+    writer.Key("IsFileComment");
     writer.Bool(fileSortSettings.mIsFileComment);
-    writeJsonKey("IsAllFileTypes");
+    writer.Key("IsAllFileTypes");
     writer.Bool(fileSortSettings.mIsAllFileTypes);
+    writer.EndObject();
   }
   writer.Key("OutputDestination");
   writer.String(mOutputDestination.toStdString().c_str(),
