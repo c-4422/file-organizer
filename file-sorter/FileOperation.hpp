@@ -48,6 +48,7 @@ public:
   bool IsFileComment(Category aCategory);
   bool IsAllFileTypes(Category aCategory);
   bool SaveConfiguration(QString aFilePath);
+  bool LoadConfiguraation(QString aFilePath);
 
 private:
   struct FileSortSettings {

@@ -1,6 +1,8 @@
 #include "FileOperation.hpp"
 
 #include "rapidjson/document.h"
+#include "rapidjson/filereadstream.h"
+#include "rapidjson/istreamwrapper.h"
 #include "rapidjson/prettywriter.h" // for stringify JSON
 #include <fstream>
 #include <iostream>
@@ -307,6 +309,110 @@ bool FileOperation::SaveConfiguration(const QString aFilePath) {
 
   saveFile << outputString.GetString();
   saveFile.close();
+
+  return true;
+}
+
+bool FileOperation::LoadConfiguraation(QString aFilePath) {
+  auto fileString = aFilePath.toStdString().c_str();
+  std::ifstream inputFileStream{fileString};
+  if (!inputFileStream.is_open()) {
+    return false;
+  }
+
+  rapidjson::IStreamWrapper iStreamWrap{inputFileStream};
+
+  rapidjson::Document doc{};
+  doc.ParseStream(iStreamWrap);
+
+  rapidjson::StringBuffer buffer{};
+  rapidjson::Writer<rapidjson::StringBuffer> writer{buffer};
+  doc.Accept(writer);
+
+  if (doc.HasParseError()) {
+    return false;
+  }
+
+  for (auto category : AllCategories) {
+    FileSortSettings *fileSortSettings = GetFileSortSettings(category);
+    const auto categoryString = GetCategoryString(category).toStdString();
+    if (doc.HasMember(categoryString.c_str()) &&
+        doc[categoryString.c_str()].IsObject()) {
+      const rapidjson::Value &jsonCategoryObj = doc[categoryString.c_str()];
+
+      if (jsonCategoryObj.HasMember("DirectoryOutputs") &&
+          jsonCategoryObj["DirectoryOutputs"].IsArray()) {
+        const rapidjson::Value &jsonDirectoryOutputs = doc["DirectoryOutputs"];
+        // Clear any existing directory outputs
+        fileSortSettings->mInputDirectories.clear();
+
+        for (rapidjson::SizeType i = 0; i < jsonDirectoryOutputs.Size(); i++) {
+          if (jsonDirectoryOutputs[i].IsObject()) {
+            DirectoryOutput extractedInfo;
+            const rapidjson::Value &dirMember = jsonDirectoryOutputs[i];
+
+            if (dirMember.HasMember("IsMultiDestination") &&
+                dirMember["IsMultiDestination"].IsBool()) {
+              extractedInfo.mIsMultiDestination =
+                  dirMember["IsMultiDestination"].GetBool();
+            }
+            if (dirMember.HasMember("IsDateSorted") &&
+                dirMember["IsDateSorted"].IsBool()) {
+              extractedInfo.mIsDateSort = dirMember["IsDateSorted"].GetBool();
+            }
+            if (dirMember.HasMember("FolderInput") &&
+                dirMember["FolderInput"].IsString()) {
+              extractedInfo.mFolderInput = dirMember["FolderInput"].GetString();
+            }
+            if (dirMember.HasMember("FolderOutputs") &&
+                dirMember["FolderOutputs"].IsArray()) {
+              const rapidjson::Value &outArray = dirMember["FolderOutputs"];
+              for (int j = 0; j < outArray.Size(); j++) {
+                QString folder = outArray[j].GetString();
+                extractedInfo.mFolderOutputs.push_back(folder);
+              }
+            }
+            fileSortSettings->mInputDirectories.push_back(extractedInfo);
+          }
+        }
+      }
+      if (jsonCategoryObj.HasMember("FileExtensions") &&
+          jsonCategoryObj["FileExtensions"].IsArray()) {
+        const rapidjson::Value &fileExtMember =
+            jsonCategoryObj["FileExtensions"];
+        // Clear file extensions to read in from file
+        fileSortSettings->mFileExtensions.clear();
+        for (int i = 0; i < fileExtMember.Size(); i++) {
+          if (fileExtMember[i].IsString()) {
+            fileSortSettings->mFileExtensions.push_back(
+                fileExtMember[i].GetString());
+          }
+        }
+      }
+      if (jsonCategoryObj.HasMember("OutputDestination") &&
+          jsonCategoryObj["OutputDestination"].IsString()) {
+        fileSortSettings->mOutputDestination =
+            jsonCategoryObj["OutputDestination"].GetString();
+      }
+      if (jsonCategoryObj.HasMember("IsFileComment") &&
+          jsonCategoryObj["IsFileComment"].IsBool()) {
+        fileSortSettings->mIsFileComment =
+            jsonCategoryObj["IsFileComment"].GetBool();
+      }
+      if (jsonCategoryObj.HasMember("IsAllFileTypes") &&
+          jsonCategoryObj["IsAllFileTypes"].IsBool()) {
+        fileSortSettings->mIsFileComment =
+            jsonCategoryObj["IsAllFileTypes"].GetBool();
+      }
+    }
+  }
+  if (doc.HasMember("OutputDestination") &&
+      doc["OutputDestination"].IsString()) {
+    mOutputDestination =
+        doc["OutputDestination"].GetString();
+  }
+
+  inputFileStream.close();
 
   return true;
 }
